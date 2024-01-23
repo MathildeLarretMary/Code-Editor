@@ -1,8 +1,13 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const CodeSection : React.FC = () => {
 
     const [inputValue, setInputValue] = useState<string>("");
+    //@ts-ignore
+    const inputState = useSelector(state => state.redux)
+    console.log(inputState);
+    
 
     const handleCopyCode = () => {
         console.log(inputValue);
