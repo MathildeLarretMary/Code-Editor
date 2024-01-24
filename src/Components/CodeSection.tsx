@@ -1,12 +1,20 @@
 import { useDispatch } from "react-redux";
 import { updateCode } from "../Features/redux";
+import { useState } from "react";
 
-const CodeSection : React.FC<{ id: string; code: string }>  = ({id, code}, ref) => {
+const CodeSection : React.FC<{ id: string; code: string }>  = ({id, code}) => {
     const dispatch = useDispatch()
+    const [text, setText] = useState("")
 
-    const handleCopyCode = () => {
-        console.log(id);
-    }
+    const copyToClipboard = (text: string) => {
+        navigator.clipboard.writeText(text)
+          .then(() => {
+            console.log('Text successfully copied to clipboard');
+          })
+          .catch((err) => {
+            console.error('Unable to copy text to clipboard', err);
+          });
+      };
 
     return (
         <div className="code-zone">
@@ -14,10 +22,15 @@ const CodeSection : React.FC<{ id: string; code: string }>  = ({id, code}, ref) 
             placeholder="code ..." 
             spellCheck = "false"
             value={code}
-            onChange={e => dispatch(updateCode({id, value: e.target.value}))}
+            onChange={(e) => {
+                dispatch(updateCode({id, value: e.target.value}))
+                setText(e.target.value)
+            }
+        
+        }
             ></textarea>
 
-            <button className="code-zone-btn" onClick={handleCopyCode}>copy</button>
+            <button className="code-zone-btn" onClick={() => {copyToClipboard(text)}}>copy</button>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CodeSection from '../Components/CodeSection';
 import HeaderCode from '../Components/HeaderCode';
 import ResultZone from '../Components/ResultZone';
@@ -17,13 +17,19 @@ export interface State {
 const HomePage: React.FC = () => {
     //@ts-ignore
     const inputState = useSelector(state => state.redux)
-
+    const dispatch = useDispatch()
     const [fileIndex, setFileIndex] = useState(inputState[0].id);
+
+    const  clickRunBtn = () => {
+        console.log('click run');
+    }
 
     return (
         <>
             <div className="HomePage">
-                <HeaderCode />
+                <HeaderCode 
+                handleClickRun={clickRunBtn}
+                />
                 <main>
                 <section className="sidebar">
                     {inputState.map((element: { id: string; imgURL: string; buttonContent: string; }) => {
