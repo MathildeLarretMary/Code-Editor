@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateCode } from "../Features/redux";
 
 const CodeSection : React.FC<{ id: string; code: string }>  = ({id, code}, ref) => {
-
-    const [inputValue, setInputValue] = useState<string>("");
+    const dispatch = useDispatch()
 
     const handleCopyCode = () => {
         console.log(id);
@@ -14,7 +14,8 @@ const CodeSection : React.FC<{ id: string; code: string }>  = ({id, code}, ref) 
             placeholder="code ..." 
             spellCheck = "false"
             value={code}
-            onChange={(e) => setInputValue(e.target.value)}></textarea>
+            onChange={e => dispatch(updateCode({id, value: e.target.value}))}
+            ></textarea>
 
             <button className="code-zone-btn" onClick={handleCopyCode}>copy</button>
         </div>

@@ -104,11 +104,21 @@ main {
     outline: none;
 }
 
+/*------------------------------------------------------------------------*/
 .result-zone {
     background-color: aliceblue;
     height: 50%;
 }
 
+.result-zone > * {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    border: none;
+}
+
+
+/*------------------------------------------------------------------------*/
 @media (min-width:950px) {
     .editor {
         flex-direction: row;

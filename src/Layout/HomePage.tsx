@@ -3,7 +3,7 @@ import CodeSection from '../Components/CodeSection';
 import HeaderCode from '../Components/HeaderCode';
 import ResultZone from '../Components/ResultZone';
 import './HomePage.css';
-import { Key, useState } from "react";
+import { useState } from "react";
 import ButtonFile from "../Components/ButtonFile";
 
 export interface State {
@@ -17,7 +17,6 @@ export interface State {
 const HomePage: React.FC = () => {
     //@ts-ignore
     const inputState = useSelector(state => state.redux)
-    console.log(inputState);
 
     const [fileIndex, setFileIndex] = useState(inputState[0].id);
 
@@ -27,7 +26,7 @@ const HomePage: React.FC = () => {
                 <HeaderCode />
                 <main>
                 <section className="sidebar">
-                    {inputState.map((element: { id: any; imgURL: string; buttonContent: string; }) => {
+                    {inputState.map((element: { id: string; imgURL: string; buttonContent: string; }) => {
                         return (
                             <ButtonFile
                                 key={element.id}

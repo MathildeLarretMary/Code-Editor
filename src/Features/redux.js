@@ -25,27 +25,32 @@ const initialState = [
             padding: 25px;
             color: #111;
             backgound-color: #f1f1f1;
-        }`
+}`
     },
     {
         id : 3,
         lang : "javascript",
         imgURL : js,
         buttonContent : "JavaScript",
-        code : `console.log("Hello World !")`
+        code : `console.log("Hello World !")
+`
     },
 ]
 
 export const codeSlice = createSlice({
-    name: "code-slice", // name of this Slice
+    name: "code-slice",
     initialState,
-    reducers : {
+    reducers: {
         updateCode: (state, action) => {
-            // .code === code on initialState
-            state.find(obj => obj === action.payload.id).code = action.payload.value
+            const { id, value } = action.payload;
+            const codeObject = state.find(obj => obj.id === id);
+
+            if (codeObject) {
+                codeObject.code = value;
+            }
         }
-    } 
-})
+    }
+});
 
 // actions => dispatch actions on our store to change the state 
 export const {updateCode} = codeSlice.actions
