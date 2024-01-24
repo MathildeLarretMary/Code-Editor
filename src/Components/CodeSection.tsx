@@ -1,16 +1,11 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 
-const CodeSection : React.FC = () => {
+const CodeSection : React.FC<{ id: string; code: string }>  = ({id, code}, ref) => {
 
     const [inputValue, setInputValue] = useState<string>("");
-    //@ts-ignore
-    const inputState = useSelector(state => state.redux)
-    console.log(inputState);
-    
 
     const handleCopyCode = () => {
-        console.log(inputValue);
+        console.log(id);
     }
 
     return (
@@ -18,7 +13,7 @@ const CodeSection : React.FC = () => {
             <textarea className="code-zone-textarea" 
             placeholder="code ..." 
             spellCheck = "false"
-            value={inputValue}
+            value={code}
             onChange={(e) => setInputValue(e.target.value)}></textarea>
 
             <button className="code-zone-btn" onClick={handleCopyCode}>copy</button>

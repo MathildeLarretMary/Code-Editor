@@ -11,9 +11,9 @@ const initialState = [
         imgURL : html,
         buttonContent : "HTML",
         code : `<div>
-        <h1>Free Onnline Code Editor</h1>
+        <h1>Free Online Code Editor</h1>
         <p>code directly on your browser for free</p>
-        </div>`
+</div>`
     },
     {
         id : 2,
